@@ -1,290 +1,274 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Review Copilot - Corporate Traveller</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;}
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Travel Review Copilot - Corporate Traveller&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="root"&gt;&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script type="text/babel"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const { useState } = React;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function TravelReviewApp() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const [form, setForm] = useState({name: '', url: '', notes: ''});</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const [errors, setErrors] = useState({});</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const [generated, setGenerated] = useState(false);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const [message, setMessage] = useState('');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const validate = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const e = {};</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!form.name.trim()) e.name = true;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setErrors(e);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return Object.keys(e).length === 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const submit = (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>e.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!validate()) return;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const reviewMessage = `I need to create an Annual Business Review for ${form.name}.</p>
-<p class="p2"><br></p>
-<p class="p1">**CUSTOMER INFORMATION:**</p>
-<p class="p1">📋 Customer Name: ${form.name}</p>
-<p class="p1">${form.url ? `🌐 Website: ${form.url}` : ''}</p>
-<p class="p1">${form.notes ? `📝 Additional Notes: ${form.notes}` : ''}</p>
-<p class="p2"><br></p>
-<p class="p1">**FILES TO UPLOAD:**</p>
-<p class="p1">I have the following files ready to upload:</p>
-<p class="p1">1. 📊 Account Management Pack (travel data PDF/Excel)</p>
-<p class="p1">2. 📖 Operations Team Cheat Sheet (customer intelligence)</p>
-<p class="p2"><br></p>
-<p class="p1">**DELIVERABLE REQUESTED:**</p>
-<p class="p1">Complete 2-part HTML Annual Business Review with all 12 sections:</p>
-<p class="p1">- Executive Summary + Key Metrics + Program Health + Wins + Opportunities + Growth Plays + Next Steps</p>
-<p class="p1">- Success Metrics + Discussion Points + Questions + Regional Breakdown + Air Carriers + Footer</p>
-<p class="p2"><br></p>
-<p class="p1">Format: Corporate Traveller branded (#FE2A5C), Word-ready HTML</p>
-<p class="p2"><br></p>
-<p class="p1">Ready to upload files now!`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>setMessage(reviewMessage);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setGenerated(true);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const copyMessage = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>navigator.clipboard.writeText(message);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>alert('✅ Message copied! Now click "Launch FCTG Chat" to proceed.');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const launchChat = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>window.open('https://chat.fctg.ai/c/new', '_blank');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const reset = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setGenerated(false);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setForm({name: '', url: '', notes: ''});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setMessage('');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>setErrors({});</p>
-<p class="p1"><span class="Apple-converted-space">      </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (generated) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return (</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="min-h-screen bg-gradient-to-br from-pink-50 to-white p-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="max-w-4xl mx-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white rounded-lg shadow-md p-6 mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h1 className="text-3xl font-bold text-pink-600 mb-2"&gt;✅ Review Request Ready!&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="text-gray-600"&gt;Follow these 3 simple steps to complete your Annual Business Review&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 mb-6 rounded-r-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 className="font-bold text-green-900 mb-3 text-xl"&gt;📋 Next Steps:&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="space-y-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex items-start bg-white rounded-lg p-4 shadow-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0"&gt;1&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="flex-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="font-bold text-gray-900 mb-1"&gt;Copy Your Request Message&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="text-sm text-gray-600"&gt;Click the button below to copy your pre-formatted request&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex items-start bg-white rounded-lg p-4 shadow-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0"&gt;2&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="flex-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="font-bold text-gray-900 mb-1"&gt;Launch FCTG Chat&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="text-sm text-gray-600"&gt;Open a new chat session and paste your message&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex items-start bg-white rounded-lg p-4 shadow-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0"&gt;3&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="flex-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="font-bold text-gray-900 mb-1"&gt;Upload Your Files&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="text-sm text-gray-600"&gt;Attach your Account Management Pack and Cheat Sheet directly in chat&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white rounded-lg shadow-lg p-6 mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex justify-between items-center mb-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;h3 className="font-bold text-lg"&gt;Your Pre-Formatted Request:&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;button</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>onClick={copyMessage}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-bold transition-all shadow-md hover:shadow-lg text-sm"</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>📋 Copy Message</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 font-mono text-sm whitespace-pre-wrap overflow-auto max-h-96"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>{message}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-yellow-50 border-l-4 border-yellow-500 p-5 mb-6 rounded-r-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="font-bold text-yellow-900 mb-2"&gt;📎 Files to Prepare:&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul className="text-sm text-yellow-800 space-y-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;li&gt;✓ Account Management Pack (PDF, Excel, or CSV - travel data)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;li&gt;✓ Operations Team Cheat Sheet (Excel, CSV, or PDF - customer intel)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="text-xs text-yellow-700 mt-3"&gt;💡 Tip: Have these files ready before launching chat for fastest processing&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="flex gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>onClick={launchChat}</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>className="flex-1 bg-gradient-to-r from-pink-600 to-pink-700 text-white py-5 rounded-lg hover:from-pink-700 hover:to-pink-800 font-bold text-xl transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02]"</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>🚀 Launch FCTG Chat</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>onClick={reset}</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>className="bg-gray-500 text-white px-8 py-5 rounded-lg hover:bg-gray-600 font-bold transition-all shadow-lg"</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>← Start Over</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;p className="text-center text-sm text-gray-500 mt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>The AI will guide you through the rest of the process once you upload your files</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>return (</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="min-h-screen bg-gradient-to-br from-pink-50 to-white p-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="max-w-4xl mx-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="bg-white rounded-lg shadow-md p-6 mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;h1 className="text-3xl font-bold text-pink-600 mb-2"&gt;Travel Review Copilot&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;p className="text-gray-600"&gt;Automated Annual Business Review Generation&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-500 p-6 mb-6 rounded-r-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;h3 className="font-bold text-blue-900 mb-2 text-lg"&gt;✨ How It Works&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="space-y-2 text-sm text-blue-800"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;1️⃣ Fill in customer details below&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;2️⃣ Generate your pre-formatted request message&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;3️⃣ Upload files in FCTG Chat for AI processing&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;4️⃣ Receive complete 12-section HTML review in minutes&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;form onSubmit={submit} className="bg-white rounded-lg shadow-md p-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;label className="block text-lg font-bold mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>Customer Name &lt;span className="text-red-500"&gt;*&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;input<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>type="text"<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>value={form.name}<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>onChange={(e) =&gt; setForm({...form, name: e.target.value})}<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>placeholder="e.g., Insignia Pty Ltd"<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>{errors.name &amp;&amp; &lt;p className="text-red-600 text-sm mt-1"&gt;Required field&lt;/p&gt;}</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;label className="block text-lg font-bold mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>Website URL &lt;span className="text-gray-400"&gt;(Optional)&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;input<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>type="text"<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>value={form.url}<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>onChange={(e) =&gt; setForm({...form, url: e.target.value})}<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>placeholder="https://www.example.com"<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"</p>
-<p class="p1"><span class="Apple-converted-space">                </span>/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="text-sm text-gray-500 mt-1"&gt;For company context and research&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;label className="block text-lg font-bold mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>Additional Notes &lt;span className="text-gray-400"&gt;(Optional)&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;textarea<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>value={form.notes}<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>onChange={(e) =&gt; setForm({...form, notes: e.target.value})}<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                  </span>placeholder="Any specific focus areas, priorities, or special requests for this review..."</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>rows="4"</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"</p>
-<p class="p1"><span class="Apple-converted-space">                </span>/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="text-sm text-gray-500 mt-1"&gt;E.g., "Focus on cost savings", "Highlight sustainability initiatives"&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-green-50 border-2 border-green-200 rounded-lg p-6 mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="font-bold text-green-900 mb-3"&gt;✅ Your Complete Review Will Include:&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="grid grid-cols-2 gap-2 text-sm text-green-800"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Executive Summary&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Key Metrics (5 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Program Health (5 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Wins (4 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Opportunities (4 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Growth Plays (3 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Next Steps (4 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Success Metrics (4 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Discussion Points (6 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Questions (4 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Regional Breakdown (5 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;• Air Carriers (3 rows)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="text-sm text-green-800 mt-3 font-bold"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>Format: 2 HTML documents | CT branded (#FE2A5C) | Word-ready</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-yellow-50 border-l-4 border-yellow-400 p-5 mb-6 rounded-r-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="font-bold text-yellow-900 mb-2"&gt;📎 Files You'll Need to Upload in Chat:&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul className="text-sm text-yellow-800 space-y-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;li&gt;✓ Account Management Pack (travel data PDF/Excel)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                  </span>&lt;li&gt;✓ Operations Team Cheat Sheet (customer intelligence)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="text-xs text-yellow-700 mt-2"&gt;These will be uploaded directly in FCTG Chat for secure processing&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;button<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>type="submit"<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>className="w-full bg-gradient-to-r from-pink-600 to-pink-700 text-white py-5 rounded-lg hover:from-pink-700 hover:to-pink-800 font-bold text-xl transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02]"</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>📝 Generate Request Message</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/button&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;p className="text-center text-sm text-gray-500 mt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>You'll get a pre-formatted message to paste in FCTG Chat</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>ReactDOM.render(&lt;TravelReviewApp /&gt;, document.getElementById('root'));</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <div id="root"></div>
+  
+  <script type="text/babel">
+    const { useState } = React;
+
+    function TravelReviewApp() {
+      const [form, setForm] = useState({name: '', url: '', notes: ''});
+      const [errors, setErrors] = useState({});
+      const [generated, setGenerated] = useState(false);
+      const [message, setMessage] = useState('');
+
+      const validate = () => {
+        const e = {};
+        if (!form.name.trim()) e.name = true;
+        setErrors(e);
+        return Object.keys(e).length === 0;
+      };
+
+      const submit = (e) => {
+        e.preventDefault();
+        if (!validate()) return;
+
+        const reviewMessage = `I need to create an Annual Business Review for ${form.name}.
+
+**CUSTOMER INFORMATION:**
+📋 Customer Name: ${form.name}
+${form.url ? `🌐 Website: ${form.url}` : ''}
+${form.notes ? `📝 Additional Notes: ${form.notes}` : ''}
+
+**FILES TO UPLOAD:**
+I have the following files ready to upload:
+1. 📊 Account Management Pack (travel data PDF/Excel)
+2. 📖 Operations Team Cheat Sheet (customer intelligence)
+
+**DELIVERABLE REQUESTED:**
+Complete 2-part HTML Annual Business Review with all 12 sections:
+- Executive Summary + Key Metrics + Program Health + Wins + Opportunities + Growth Plays + Next Steps
+- Success Metrics + Discussion Points + Questions + Regional Breakdown + Air Carriers + Footer
+
+Format: Corporate Traveller branded (#FE2A5C), Word-ready HTML
+
+Ready to upload files now!`;
+
+        setMessage(reviewMessage);
+        setGenerated(true);
+      };
+
+      const copyMessage = () => {
+        navigator.clipboard.writeText(message);
+        alert('✅ Message copied! Now click "Launch FCTG Chat" to proceed.');
+      };
+
+      const launchChat = () => {
+        window.open('https://chat.fctg.ai/c/new', '_blank');
+      };
+
+      const reset = () => {
+        setGenerated(false);
+        setForm({name: '', url: '', notes: ''});
+        setMessage('');
+        setErrors({});
+      };
+
+      if (generated) {
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white p-8">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h1 className="text-3xl font-bold text-pink-600 mb-2">✅ Review Request Ready!</h1>
+                <p className="text-gray-600">Follow these 3 simple steps to complete your Annual Business Review</p>
+              </div>
+
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 mb-6 rounded-r-lg">
+                <h3 className="font-bold text-green-900 mb-3 text-xl">📋 Next Steps:</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start bg-white rounded-lg p-4 shadow-sm">
+                    <div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">1</div>
+                    <div className="flex-1">
+                      <p className="font-bold text-gray-900 mb-1">Copy Your Request Message</p>
+                      <p className="text-sm text-gray-600">Click the button below to copy your pre-formatted request</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start bg-white rounded-lg p-4 shadow-sm">
+                    <div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">2</div>
+                    <div className="flex-1">
+                      <p className="font-bold text-gray-900 mb-1">Launch FCTG Chat</p>
+                      <p className="text-sm text-gray-600">Open a new chat session and paste your message</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start bg-white rounded-lg p-4 shadow-sm">
+                    <div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">3</div>
+                    <div className="flex-1">
+                      <p className="font-bold text-gray-900 mb-1">Upload Your Files</p>
+                      <p className="text-sm text-gray-600">Attach your Account Management Pack and Cheat Sheet directly in chat</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="font-bold text-lg">Your Pre-Formatted Request:</h3>
+                  <button
+                    onClick={copyMessage}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-bold transition-all shadow-md hover:shadow-lg text-sm"
+                  >
+                    📋 Copy Message
+                  </button>
+                </div>
+                <div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 font-mono text-sm whitespace-pre-wrap overflow-auto max-h-96">
+                  {message}
+                </div>
+              </div>
+
+              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-5 mb-6 rounded-r-lg">
+                <p className="font-bold text-yellow-900 mb-2">📎 Files to Prepare:</p>
+                <ul className="text-sm text-yellow-800 space-y-1">
+                  <li>✓ Account Management Pack (PDF, Excel, or CSV - travel data)</li>
+                  <li>✓ Operations Team Cheat Sheet (Excel, CSV, or PDF - customer intel)</li>
+                </ul>
+                <p className="text-xs text-yellow-700 mt-3">💡 Tip: Have these files ready before launching chat for fastest processing</p>
+              </div>
+
+              <div className="flex gap-4">
+                <button
+                  onClick={launchChat}
+                  className="flex-1 bg-gradient-to-r from-pink-600 to-pink-700 text-white py-5 rounded-lg hover:from-pink-700 hover:to-pink-800 font-bold text-xl transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                >
+                  🚀 Launch FCTG Chat
+                </button>
+                <button
+                  onClick={reset}
+                  className="bg-gray-500 text-white px-8 py-5 rounded-lg hover:bg-gray-600 font-bold transition-all shadow-lg"
+                >
+                  ← Start Over
+                </button>
+              </div>
+
+              <p className="text-center text-sm text-gray-500 mt-4">
+                The AI will guide you through the rest of the process once you upload your files
+              </p>
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white p-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+              <h1 className="text-3xl font-bold text-pink-600 mb-2">Travel Review Copilot</h1>
+              <p className="text-gray-600">Automated Annual Business Review Generation</p>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-500 p-6 mb-6 rounded-r-lg">
+              <h3 className="font-bold text-blue-900 mb-2 text-lg">✨ How It Works</h3>
+              <div className="space-y-2 text-sm text-blue-800">
+                <p>1️⃣ Fill in customer details below</p>
+                <p>2️⃣ Generate your pre-formatted request message</p>
+                <p>3️⃣ Upload files in FCTG Chat for AI processing</p>
+                <p>4️⃣ Receive complete 12-section HTML review in minutes</p>
+              </div>
+            </div>
+            
+            <form onSubmit={submit} className="bg-white rounded-lg shadow-md p-8">
+              <div className="mb-6">
+                <label className="block text-lg font-bold mb-2">
+                  Customer Name <span className="text-red-500">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  value={form.name} 
+                  onChange={(e) => setForm({...form, name: e.target.value})} 
+                  placeholder="e.g., Insignia Pty Ltd" 
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+                />
+                {errors.name && <p className="text-red-600 text-sm mt-1">Required field</p>}
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-lg font-bold mb-2">
+                  Website URL <span className="text-gray-400">(Optional)</span>
+                </label>
+                <input 
+                  type="text" 
+                  value={form.url} 
+                  onChange={(e) => setForm({...form, url: e.target.value})} 
+                  placeholder="https://www.example.com" 
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+                />
+                <p className="text-sm text-gray-500 mt-1">For company context and research</p>
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-lg font-bold mb-2">
+                  Additional Notes <span className="text-gray-400">(Optional)</span>
+                </label>
+                <textarea 
+                  value={form.notes} 
+                  onChange={(e) => setForm({...form, notes: e.target.value})} 
+                  placeholder="Any specific focus areas, priorities, or special requests for this review..."
+                  rows="4"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+                />
+                <p className="text-sm text-gray-500 mt-1">E.g., "Focus on cost savings", "Highlight sustainability initiatives"</p>
+              </div>
+
+              <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6 mb-6">
+                <p className="font-bold text-green-900 mb-3">✅ Your Complete Review Will Include:</p>
+                <div className="grid grid-cols-2 gap-2 text-sm text-green-800">
+                  <div>• Executive Summary</div>
+                  <div>• Key Metrics (5 rows)</div>
+                  <div>• Program Health (5 rows)</div>
+                  <div>• Wins (4 rows)</div>
+                  <div>• Opportunities (4 rows)</div>
+                  <div>• Growth Plays (3 rows)</div>
+                  <div>• Next Steps (4 rows)</div>
+                  <div>• Success Metrics (4 rows)</div>
+                  <div>• Discussion Points (6 rows)</div>
+                  <div>• Questions (4 rows)</div>
+                  <div>• Regional Breakdown (5 rows)</div>
+                  <div>• Air Carriers (3 rows)</div>
+                </div>
+                <p className="text-sm text-green-800 mt-3 font-bold">
+                  Format: 2 HTML documents | CT branded (#FE2A5C) | Word-ready
+                </p>
+              </div>
+
+              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-5 mb-6 rounded-r-lg">
+                <p className="font-bold text-yellow-900 mb-2">📎 Files You'll Need to Upload in Chat:</p>
+                <ul className="text-sm text-yellow-800 space-y-1">
+                  <li>✓ Account Management Pack (travel data PDF/Excel)</li>
+                  <li>✓ Operations Team Cheat Sheet (customer intelligence)</li>
+                </ul>
+                <p className="text-xs text-yellow-700 mt-2">These will be uploaded directly in FCTG Chat for secure processing</p>
+              </div>
+
+              <button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-pink-600 to-pink-700 text-white py-5 rounded-lg hover:from-pink-700 hover:to-pink-800 font-bold text-xl transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+              >
+                📝 Generate Request Message
+              </button>
+
+              <p className="text-center text-sm text-gray-500 mt-4">
+                You'll get a pre-formatted message to paste in FCTG Chat
+              </p>
+            </form>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<TravelReviewApp />, document.getElementById('root'));
+  </script>
 </body>
 </html>
