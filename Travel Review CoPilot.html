@@ -1,274 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Review Copilot - Corporate Traveller</title>
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Review Copilot | Corporate Traveller</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#fff;color:#333;height:100vh;display:flex;align-items:center;justify-content:center}
+.container{text-align:center;max-width:600px;padding:40px 20px}
+.logo{margin-bottom:30px}
+.logo h1{color:#FE2A5C;font-size:32px;font-weight:600;margin-bottom:10px}
+.content h2{color:#333;font-size:28px;margin-bottom:20px;font-weight:400}
+.content p{color:#666;font-size:16px;line-height:1.6;margin-bottom:40px}
+.cta-button{display:inline-block;background:#FE2A5C;color:#fff;padding:18px 50px;font-size:18px;font-weight:600;text-decoration:none;border-radius:50px;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(254,42,92,0.3)}
+.cta-button:hover{background:#E01F4C;transform:translateY(-2px);box-shadow:0 6px 20px rgba(254,42,92,0.4)}
+.instructions{margin-top:50px;padding-top:30px;border-top:1px solid #eee}
+.instructions h3{color:#FE2A5C;font-size:18px;margin-bottom:20px}
+.instructions ul{list-style:none;text-align:left;display:inline-block}
+.instructions li{color:#666;font-size:14px;margin:10px 0;padding-left:25px;position:relative}
+.instructions li:before{content:"✓";position:absolute;left:0;color:#FE2A5C;font-weight:bold}
+</style>
 </head>
 <body>
-  <div id="root"></div>
-  
-  <script type="text/babel">
-    const { useState } = React;
 
-    function TravelReviewApp() {
-      const [form, setForm] = useState({name: '', url: '', notes: ''});
-      const [errors, setErrors] = useState({});
-      const [generated, setGenerated] = useState(false);
-      const [message, setMessage] = useState('');
+<div class="container">
+<div class="logo">
+<h1>CORPORATE TRAVELLER</h1>
+</div>
 
-      const validate = () => {
-        const e = {};
-        if (!form.name.trim()) e.name = true;
-        setErrors(e);
-        return Object.keys(e).length === 0;
-      };
+<div class="content">
+<h2>Business Review Copilot</h2>
+<p>Upload your travel data and receive a complete, professionally formatted Business Review in minutes.</p>
 
-      const submit = (e) => {
-        e.preventDefault();
-        if (!validate()) return;
+<a href="https://chat.fctg.ai/c/new?agent_id=agent_9a0SDq5QmJ5XncU5Nr88w" class="cta-button">Start Your Review</a>
+</div>
 
-        const reviewMessage = `I need to create an Annual Business Review for ${form.name}.
+<div class="instructions">
+<h3>What You'll Need</h3>
+<ul>
+<li>Travel data PDF or Excel file</li>
+<li>Customer account information</li>
+<li>5 minutes of your time</li>
+</ul>
+</div>
+</div>
 
-**CUSTOMER INFORMATION:**
-📋 Customer Name: ${form.name}
-${form.url ? `🌐 Website: ${form.url}` : ''}
-${form.notes ? `📝 Additional Notes: ${form.notes}` : ''}
-
-**FILES TO UPLOAD:**
-I have the following files ready to upload:
-1. 📊 Account Management Pack (travel data PDF/Excel)
-2. 📖 Operations Team Cheat Sheet (customer intelligence)
-
-**DELIVERABLE REQUESTED:**
-Complete 2-part HTML Annual Business Review with all 12 sections:
-- Executive Summary + Key Metrics + Program Health + Wins + Opportunities + Growth Plays + Next Steps
-- Success Metrics + Discussion Points + Questions + Regional Breakdown + Air Carriers + Footer
-
-Format: Corporate Traveller branded (#FE2A5C), Word-ready HTML
-
-Ready to upload files now!`;
-
-        setMessage(reviewMessage);
-        setGenerated(true);
-      };
-
-      const copyMessage = () => {
-        navigator.clipboard.writeText(message);
-        alert('✅ Message copied! Now click "Launch FCTG Chat" to proceed.');
-      };
-
-      const launchChat = () => {
-        window.open('https://chat.fctg.ai/c/new', '_blank');
-      };
-
-      const reset = () => {
-        setGenerated(false);
-        setForm({name: '', url: '', notes: ''});
-        setMessage('');
-        setErrors({});
-      };
-
-      if (generated) {
-        return (
-          <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white p-8">
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-                <h1 className="text-3xl font-bold text-pink-600 mb-2">✅ Review Request Ready!</h1>
-                <p className="text-gray-600">Follow these 3 simple steps to complete your Annual Business Review</p>
-              </div>
-
-              <div className="bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500 p-6 mb-6 rounded-r-lg">
-                <h3 className="font-bold text-green-900 mb-3 text-xl">📋 Next Steps:</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start bg-white rounded-lg p-4 shadow-sm">
-                    <div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">1</div>
-                    <div className="flex-1">
-                      <p className="font-bold text-gray-900 mb-1">Copy Your Request Message</p>
-                      <p className="text-sm text-gray-600">Click the button below to copy your pre-formatted request</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start bg-white rounded-lg p-4 shadow-sm">
-                    <div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">2</div>
-                    <div className="flex-1">
-                      <p className="font-bold text-gray-900 mb-1">Launch FCTG Chat</p>
-                      <p className="text-sm text-gray-600">Open a new chat session and paste your message</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start bg-white rounded-lg p-4 shadow-sm">
-                    <div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">3</div>
-                    <div className="flex-1">
-                      <p className="font-bold text-gray-900 mb-1">Upload Your Files</p>
-                      <p className="text-sm text-gray-600">Attach your Account Management Pack and Cheat Sheet directly in chat</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="font-bold text-lg">Your Pre-Formatted Request:</h3>
-                  <button
-                    onClick={copyMessage}
-                    className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-bold transition-all shadow-md hover:shadow-lg text-sm"
-                  >
-                    📋 Copy Message
-                  </button>
-                </div>
-                <div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 font-mono text-sm whitespace-pre-wrap overflow-auto max-h-96">
-                  {message}
-                </div>
-              </div>
-
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-5 mb-6 rounded-r-lg">
-                <p className="font-bold text-yellow-900 mb-2">📎 Files to Prepare:</p>
-                <ul className="text-sm text-yellow-800 space-y-1">
-                  <li>✓ Account Management Pack (PDF, Excel, or CSV - travel data)</li>
-                  <li>✓ Operations Team Cheat Sheet (Excel, CSV, or PDF - customer intel)</li>
-                </ul>
-                <p className="text-xs text-yellow-700 mt-3">💡 Tip: Have these files ready before launching chat for fastest processing</p>
-              </div>
-
-              <div className="flex gap-4">
-                <button
-                  onClick={launchChat}
-                  className="flex-1 bg-gradient-to-r from-pink-600 to-pink-700 text-white py-5 rounded-lg hover:from-pink-700 hover:to-pink-800 font-bold text-xl transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
-                >
-                  🚀 Launch FCTG Chat
-                </button>
-                <button
-                  onClick={reset}
-                  className="bg-gray-500 text-white px-8 py-5 rounded-lg hover:bg-gray-600 font-bold transition-all shadow-lg"
-                >
-                  ← Start Over
-                </button>
-              </div>
-
-              <p className="text-center text-sm text-gray-500 mt-4">
-                The AI will guide you through the rest of the process once you upload your files
-              </p>
-            </div>
-          </div>
-        );
-      }
-
-      return (
-        <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white p-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-              <h1 className="text-3xl font-bold text-pink-600 mb-2">Travel Review Copilot</h1>
-              <p className="text-gray-600">Automated Annual Business Review Generation</p>
-            </div>
-
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-500 p-6 mb-6 rounded-r-lg">
-              <h3 className="font-bold text-blue-900 mb-2 text-lg">✨ How It Works</h3>
-              <div className="space-y-2 text-sm text-blue-800">
-                <p>1️⃣ Fill in customer details below</p>
-                <p>2️⃣ Generate your pre-formatted request message</p>
-                <p>3️⃣ Upload files in FCTG Chat for AI processing</p>
-                <p>4️⃣ Receive complete 12-section HTML review in minutes</p>
-              </div>
-            </div>
-            
-            <form onSubmit={submit} className="bg-white rounded-lg shadow-md p-8">
-              <div className="mb-6">
-                <label className="block text-lg font-bold mb-2">
-                  Customer Name <span className="text-red-500">*</span>
-                </label>
-                <input 
-                  type="text" 
-                  value={form.name} 
-                  onChange={(e) => setForm({...form, name: e.target.value})} 
-                  placeholder="e.g., Insignia Pty Ltd" 
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
-                />
-                {errors.name && <p className="text-red-600 text-sm mt-1">Required field</p>}
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-lg font-bold mb-2">
-                  Website URL <span className="text-gray-400">(Optional)</span>
-                </label>
-                <input 
-                  type="text" 
-                  value={form.url} 
-                  onChange={(e) => setForm({...form, url: e.target.value})} 
-                  placeholder="https://www.example.com" 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
-                />
-                <p className="text-sm text-gray-500 mt-1">For company context and research</p>
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-lg font-bold mb-2">
-                  Additional Notes <span className="text-gray-400">(Optional)</span>
-                </label>
-                <textarea 
-                  value={form.notes} 
-                  onChange={(e) => setForm({...form, notes: e.target.value})} 
-                  placeholder="Any specific focus areas, priorities, or special requests for this review..."
-                  rows="4"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
-                />
-                <p className="text-sm text-gray-500 mt-1">E.g., "Focus on cost savings", "Highlight sustainability initiatives"</p>
-              </div>
-
-              <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6 mb-6">
-                <p className="font-bold text-green-900 mb-3">✅ Your Complete Review Will Include:</p>
-                <div className="grid grid-cols-2 gap-2 text-sm text-green-800">
-                  <div>• Executive Summary</div>
-                  <div>• Key Metrics (5 rows)</div>
-                  <div>• Program Health (5 rows)</div>
-                  <div>• Wins (4 rows)</div>
-                  <div>• Opportunities (4 rows)</div>
-                  <div>• Growth Plays (3 rows)</div>
-                  <div>• Next Steps (4 rows)</div>
-                  <div>• Success Metrics (4 rows)</div>
-                  <div>• Discussion Points (6 rows)</div>
-                  <div>• Questions (4 rows)</div>
-                  <div>• Regional Breakdown (5 rows)</div>
-                  <div>• Air Carriers (3 rows)</div>
-                </div>
-                <p className="text-sm text-green-800 mt-3 font-bold">
-                  Format: 2 HTML documents | CT branded (#FE2A5C) | Word-ready
-                </p>
-              </div>
-
-              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-5 mb-6 rounded-r-lg">
-                <p className="font-bold text-yellow-900 mb-2">📎 Files You'll Need to Upload in Chat:</p>
-                <ul className="text-sm text-yellow-800 space-y-1">
-                  <li>✓ Account Management Pack (travel data PDF/Excel)</li>
-                  <li>✓ Operations Team Cheat Sheet (customer intelligence)</li>
-                </ul>
-                <p className="text-xs text-yellow-700 mt-2">These will be uploaded directly in FCTG Chat for secure processing</p>
-              </div>
-
-              <button 
-                type="submit" 
-                className="w-full bg-gradient-to-r from-pink-600 to-pink-700 text-white py-5 rounded-lg hover:from-pink-700 hover:to-pink-800 font-bold text-xl transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
-              >
-                📝 Generate Request Message
-              </button>
-
-              <p className="text-center text-sm text-gray-500 mt-4">
-                You'll get a pre-formatted message to paste in FCTG Chat
-              </p>
-            </form>
-          </div>
-        </div>
-      );
-    }
-
-    ReactDOM.render(<TravelReviewApp />, document.getElementById('root'));
-  </script>
 </body>
 </html>
